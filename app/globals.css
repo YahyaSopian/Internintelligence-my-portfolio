@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animasi gradien border yang mengelilingi elemen */
+@keyframes rotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Utility Class untuk Border Animasi */
+@layer utilities {
+  .animate-borderGradient {
+    position: relative;
+  }
+
+  .animate-borderGradient::before {
+    content: "";
+    position: absolute;
+    inset: -5px; /* Membuat border lebih besar sedikit dari elemen */
+    background: conic-gradient(
+      #ff0000,
+      #ff7300,
+      #ffeb00,
+      #47ff00,
+      #00ffee,
+      #2b65ff,
+      #8000ff,
+      #ff0080,
+      #ff0000
+    );
+    border-radius: 50%; /* Membuat bentuk lingkaran */
+    padding: 5px; /* Ketebalan border */
+    z-index: -1;
+    animation: rotateBorder 5s linear infinite;
+  }
+}
+
+@layer base {}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
