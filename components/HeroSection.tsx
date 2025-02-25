@@ -19,7 +19,7 @@ const HeroSection = () => {
         transition={{ duration: 0.8 }}
       >
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-          Hi, I'm <span className="text-blue-600">Yahya Sopian</span> 🚀
+          Hi, I'm <span className="text-blue-600">Yahya Sopian</span>
         </h1>
         <TypeAnimation
           sequence={[

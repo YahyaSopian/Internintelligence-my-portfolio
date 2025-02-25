@@ -1,42 +1,79 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Mail, Send, CheckCircle, X } from "lucide-react";
-import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormControl,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Send, CheckCircle, X, Phone, Mail, MapPin, User } from "lucide-react";
+import {
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
+import { useState } from "react";
+
+type FormValues = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
   const [showAlert, setShowAlert] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const form = useForm<FormValues>({
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = (data: FormValues) => {
+    console.log("Data Form:", data);
     setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 4000); // Alert otomatis hilang setelah 4 detik
+    setTimeout(() => setShowAlert(false), 4000);
+    form.reset();
   };
 
   return (
     <section id="contact" className="py-16 px-6 bg-gray-50">
-      <div className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+      <div className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg border">
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-          Contact Me
+          Get in Touch
         </h2>
         <p className="text-gray-600 text-center mb-6">
-          Jangan ragu untuk menghubungi saya!
+          Jangan ragu untuk menghubungi saya kapan saja!
         </p>
+
+        {/* Informasi Kontak */}
+        <div className="flex flex-col gap-4 mb-6 text-gray-600">
+          <div className="flex items-center gap-3">
+            <FaPhone className="w-5 h-5 text-blue-500" />
+            <span>+62 812-3456-7890</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <FaEnvelope className="w-5 h-5 text-red-500" />
+            <span>yahyasopian5@gmail.com</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <FaMapMarkerAlt className="w-5 h-5 text-green-500" />
+            <span>Jakarta, Indonesia</span>
+          </div>
+        </div>
 
         {/* Links Sosial Media */}
         <div className="flex justify-center gap-6 mb-6">
@@ -55,41 +92,24 @@ const Contact = () => {
             <FaGithub className="w-7 h-7" />
           </a>
           <a
-            href="https://twitter.com"
+            href="https://facebook.com"
             target="_blank"
-            className="text-gray-600 hover:text-blue-400 transition"
-          >
-            <X className="w-7 h-7" />
-          </a>
-          <a
-            href="https://yahyasopian5@gmail.com"
-            target="_blank"
-            className="text-gray-600 hover:text-blue-400 transition"
+            className="text-gray-600 hover:text-blue-500 transition"
           >
             <FaFacebook className="w-7 h-7" />
           </a>
           <a
-            href="https://yahyasopian5@gmail.com"
+            href="https://instagram.com"
             target="_blank"
-            className="text-gray-600 hover:text-blue-400 transition"
+            className="text-gray-600 hover:text-pink-500 transition"
           >
             <FaInstagram className="w-7 h-7" />
-          </a>
-          <a
-            href="https://yahyasopian5@gmail.com"
-            target="_blank"
-            className="text-gray-600 hover:text-blue-400 transition"
-          >
-            <Mail className="w-7 h-7" />
           </a>
         </div>
 
         {/* Alert Notifikasi */}
         {showAlert && (
-          <Alert
-            variant="default"
-            className="flex items-center gap-3 p-4 mb-4 bg-green-100 text-green-800 border border-green-300 rounded-lg"
-          >
+          <Alert className="flex items-center gap-3 p-4 mb-4 bg-green-100 text-green-800 border border-green-300 rounded-lg">
             <CheckCircle className="w-5 h-5 text-green-600" />
             <div>
               <AlertTitle>Pesan Terkirim!</AlertTitle>
@@ -109,47 +129,76 @@ const Contact = () => {
         )}
 
         {/* Formulir Kontak */}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-gray-700 font-medium">Nama</label>
-            <Input
-              type="text"
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            {/* Input Nama */}
+            <FormField
+              control={form.control}
               name="name"
-              placeholder="Masukkan nama Anda"
-              required
-              value={formData.name}
-              onChange={handleChange}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nama</FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Input placeholder="Masukkan nama Anda" {...field} />
+                      <User className="absolute right-3 top-3 text-gray-400 w-5 h-5" />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <div>
-            <label className="block text-gray-700 font-medium">Email</label>
-            <Input
-              type="email"
+            {/* Input Email */}
+            <FormField
+              control={form.control}
               name="email"
-              placeholder="Masukkan email Anda"
-              required
-              value={formData.email}
-              onChange={handleChange}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Input
+                        type="email"
+                        placeholder="Masukkan email Anda"
+                        {...field}
+                      />
+                      <Mail className="absolute right-3 top-3 text-gray-400 w-5 h-5" />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <div>
-            <label className="block text-gray-700 font-medium">Pesan</label>
-            <Textarea
+            {/* Input Pesan */}
+            <FormField
+              control={form.control}
               name="message"
-              rows={4}
-              placeholder="Tulis pesan Anda..."
-              required
-              value={formData.message}
-              onChange={handleChange}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Pesan</FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Textarea
+                        rows={4}
+                        placeholder="Tulis pesan Anda..."
+                        {...field}
+                      />
+                      <Send className="absolute right-3 top-3 text-gray-400 w-5 h-5" />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
 
-          <Button type="submit" className="w-full flex items-center gap-2">
-            <Send className="w-5 h-5" /> Kirim Pesan
-          </Button>
-        </form>
+            {/* Tombol Kirim */}
+            <Button type="submit" className="w-full flex items-center gap-2">
+              <Send className="w-5 h-5" /> Kirim Pesan
+            </Button>
+          </form>
+        </Form>
       </div>
     </section>
   );
