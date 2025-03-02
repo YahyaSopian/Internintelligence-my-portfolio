@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 
 // List menu
-const navItems = ["home", "about", "skills", "experience", "blogs", "quotes", "contact"];
+const navItems = ["home", "about", "skills", "projects", "blogs", "quotes", "contact"];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

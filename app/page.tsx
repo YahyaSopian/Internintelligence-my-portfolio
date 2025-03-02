@@ -1,7 +1,7 @@
 import AboutSection from "@/components/AboutSection";
 import Blogs from "@/components/Blogs";
 import Contact from "@/components/Contact";
-import Experience from "@/components/Experience";
+import Projects from "@/components/Projects";
 import HeroSection from "@/components/HeroSection";
 import Quotes from "@/components/Quotes";
 import Skills from "@/components/SkillsSection";
@@ -12,7 +12,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <Skills />
-      <Experience />
+      <Projects />
       <Blogs />
       <Quotes />
       <Contact />
