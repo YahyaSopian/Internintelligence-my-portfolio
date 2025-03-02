@@ -8,7 +8,7 @@ import Skills from "@/components/SkillsSection";
 
 export default function Home() {
   return (
-    <>
+    <main className="w-svw bg-gray-100 text-gray-900 m-0 p-0 ">
       <HeroSection />
       <AboutSection />
       <Skills />
@@ -16,6 +16,6 @@ export default function Home() {
       <Blogs />
       <Quotes />
       <Contact />
-    </>
+    </main>
   );
 }

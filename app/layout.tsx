@@ -11,18 +11,14 @@ export const metadata: Metadata = {
   description: "Portfolio web developer Yahya Sopian",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-gray-100 text-gray-900">
+      <body className="w-svw overflow-x-hidden bg-gray-100 text-gray-900 m-0 p-0 ">
         <header className="mb-10">
           <Navbar />
         </header>
-        <main>{children}</main>
+        {children}
         <Footer />
       </body>
     </html>

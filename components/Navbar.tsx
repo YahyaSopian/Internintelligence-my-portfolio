@@ -2,30 +2,13 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@/components/ui/navigation-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 
 // List menu
-const navItems = [
-  "home",
-  "about",
-  "skills",
-  "experience",
-  "blogs",
-  "quotes",
-  "contact",
-];
+const navItems = ["home", "about", "skills", "experience", "blogs", "quotes", "contact"];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,9 +61,7 @@ const Navbar = () => {
                 <Button
                   variant="ghost"
                   className={`relative px-4 py-2 text-gray-700 transition duration-300 hover:text-blue-600 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-full ${
-                    activeSection === item
-                      ? "text-blue-600 font-semibold after:w-full"
-                      : ""
+                    activeSection === item ? "text-blue-600 font-semibold after:w-full" : ""
                   }`}
                   onClick={() => handleScrollTo(item)}
                 >
@@ -95,25 +76,14 @@ const Navbar = () => {
         <div className="lg:hidden">
           <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
             <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="text-gray-700 hover:text-blue-600"
-              >
+              <Button variant="ghost" className="text-gray-700 hover:text-blue-600">
                 <Menu className="w-7 h-7" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-48 mt-2 bg-white shadow-lg rounded-lg">
+            <DropdownMenuContent className="w-48 mt-2 bg-white shadow-lg rounded-lg relative right-0">
               {navItems.map((item) => (
                 <DropdownMenuItem key={item}>
-                  <Button
-                    variant="ghost"
-                    className={`w-full text-gray-700 text-left py-2 transition duration-300 hover:text-blue-600 ${
-                      activeSection === item
-                        ? "text-blue-600 font-semibold"
-                        : ""
-                    }`}
-                    onClick={() => handleScrollTo(item)}
-                  >
+                  <Button variant="ghost" className={`w-full text-gray-700 text-left py-2 transition duration-300 hover:text-blue-600 ${activeSection === item ? "text-blue-600 font-semibold" : ""}`} onClick={() => handleScrollTo(item)}>
                     {item.charAt(0).toUpperCase() + item.slice(1)}
                   </Button>
                 </DropdownMenuItem>
