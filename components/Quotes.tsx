@@ -1,40 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Image from "next/image";
 import { Quote, Sparkles } from "lucide-react";
 
 const quotes = [
   {
     text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-    author: "Winston Churchill",
+    author: "Yahya Sopian",
     image: "/yahya.jpg",
   },
   {
     text: "The only way to do great work is to love what you do.",
-    author: "Steve Jobs",
+    author: "Yahya Sopian",
     image: "/yahya.jpg",
   },
   {
     text: "Do what you can, with what you have, where you are.",
-    author: "Theodore Roosevelt",
+    author: "Yahya Sopian",
     image: "/yahya.jpg",
   },
 ];
 
 const Quotes = () => {
   return (
-    <section
-      id="quotes"
-      className="py-16 p-6 md:p-12 bg-gradient-to-b from-gray-50 to-gray-200"
-    >
+    <section id="quotes" className="py-16 p-6 md:p-12 bg-gradient-to-b from-gray-50 to-gray-200">
       {/* Header */}
       <motion.h2
         className="text-center text-3xl font-bold mb-8 text-gray-900 flex items-center justify-center gap-2"
@@ -56,10 +47,7 @@ const Quotes = () => {
         <Carousel>
           <CarouselContent className="flex">
             {quotes.map((quote, index) => (
-              <CarouselItem
-                key={index}
-                className="flex flex-col items-center text-center p-6"
-              >
+              <CarouselItem key={index} className="flex flex-col items-center text-center p-6">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -72,16 +60,8 @@ const Quotes = () => {
                 </motion.div>
 
                 <div className="mt-6 flex items-center gap-3">
-                  <Image
-                    src={quote.image}
-                    alt={quote.author}
-                    width={50}
-                    height={50}
-                    className="rounded-full border-2 border-yellow-500 shadow-md"
-                  />
-                  <span className="text-sm font-semibold text-gray-700">
-                    {quote.author}
-                  </span>
+                  <Image src={quote.image} alt={quote.author} width={50} height={50} className="rounded-full border-2 border-yellow-500 shadow-md" />
+                  <span className="text-sm font-semibold text-gray-700">{quote.author}</span>
                 </div>
               </CarouselItem>
             ))}

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <body className="w-svw overflow-x-hidden bg-gray-100 text-gray-900 m-0 p-0 ">
         <header className="mb-10">
           <Navbar />

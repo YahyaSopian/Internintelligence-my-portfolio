@@ -50,7 +50,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center px-6">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold text-gray-900">
-          yahya<span className="text-blue-600"> .</span>
+          Yahya Sopian
         </Link>
 
         {/* Navigation Menu untuk Desktop */}
